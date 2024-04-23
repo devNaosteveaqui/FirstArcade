@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://jmvw7xyxh7p7"]
+
+[ext_resource type="Texture2D" uid="uid://bvg13fyuwa327" path="res://Asset/Projectiles/Player_beam (16 x 16).png" id="1_gd8f1"]
+[ext_resource type="Script" path="res://projetil_normal.gd" id="1_ixj4f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phlwx"]
+size = Vector2(10, 10)
+
+[node name="projetil_normal" type="CharacterBody2D"]
+script = ExtResource("1_ixj4f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_phlwx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("1_gd8f1")

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnfjlvyksqhle"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_ayovl"]
+[ext_resource type="SpriteFrames" uid="uid://dmlcvbygj8mas" path="res://bonbon.tres" id="1_f3qpe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tlxam"]
+size = Vector2(14, 8)
+
+[node name="bonbon" type="CharacterBody2D"]
+position = Vector2(48, 325)
+script = ExtResource("1_ayovl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tlxam")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_f3qpe")
+animation = &"die"
+
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]

@@ -1,0 +1,294 @@
+[gd_scene load_steps=30 format=3 uid="uid://b1f40g7myiv2h"]
+
+[ext_resource type="Script" path="res://ParallaxBackground.gd" id="1_afyvs"]
+[ext_resource type="Script" path="res://game.gd" id="1_rgw77"]
+[ext_resource type="Texture2D" uid="uid://8otfcqgeq7me" path="res://Asset/Space_BG (2 frames) (64 x 64).png" id="2_ee6xh"]
+[ext_resource type="Texture2D" uid="uid://brsjp4as1b0ri" path="res://Asset/Player ship/Player_ship (16 x 16).png" id="3_dq7fv"]
+[ext_resource type="Script" path="res://CharacterBody2D.gd" id="3_mmodo"]
+[ext_resource type="Texture2D" uid="uid://e0rjq8lv4uiy" path="res://Asset/Player ship/Boosters (16 x 16).png" id="4_ie5fh"]
+[ext_resource type="Texture2D" uid="uid://ds0ja154snw12" path="res://Asset/UI objects/Power_+_charge_bars (full + empty) (32 x 16).png" id="4_jrgeu"]
+[ext_resource type="Texture2D" uid="uid://btuub8dwge0ss" path="res://Asset/UI objects/Player_life_icon (16 x 16).png" id="4_wff1v"]
+[ext_resource type="Texture2D" uid="uid://dtei1imayclgk" path="res://Asset/Player ship/Boosters_left (16 x 16).png" id="5_dj41s"]
+[ext_resource type="Script" path="res://Life.gd" id="5_t8y8b"]
+[ext_resource type="Texture2D" uid="uid://dfxp5x0k3k4o4" path="res://Asset/Player ship/Boosters_right (16 x 16).png" id="6_p078c"]
+[ext_resource type="Script" path="res://Power.gd" id="7_q7je4"]
+[ext_resource type="Texture2D" uid="uid://cojmpmxrgwucg" path="res://Asset/UI objects/Item_held_box (16 x 16).png" id="8_li6px"]
+[ext_resource type="Texture2D" uid="uid://cgpqa8c24xoch" path="res://Asset/UI objects/GAME_OVER (72 x 8).png" id="8_supri"]
+[ext_resource type="Texture2D" uid="uid://dkfnnamgug226" path="res://Asset/UI objects/Number_font (8 x 8).png" id="9_4hdv3"]
+[ext_resource type="Script" path="res://Score.gd" id="9_62b4c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8sxpr"]
+atlas = ExtResource("4_jrgeu")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ua13p"]
+atlas = ExtResource("4_jrgeu")
+region = Rect2(32, 0, 32, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6bf1"]
+atlas = ExtResource("4_jrgeu")
+region = Rect2(0, 0, 32, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_413b5"]
+atlas = ExtResource("4_jrgeu")
+region = Rect2(41, 12, 17, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kywws"]
+atlas = ExtResource("4_jrgeu")
+region = Rect2(9, 12, 17, 4)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tyvjy"]
+radius = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r378q"]
+atlas = ExtResource("4_ie5fh")
+region = Rect2(0, 0, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1isc8"]
+atlas = ExtResource("4_ie5fh")
+region = Rect2(16, 0, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4qpf"]
+atlas = ExtResource("5_dj41s")
+region = Rect2(0, 0, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_egxh5"]
+atlas = ExtResource("5_dj41s")
+region = Rect2(16, 0, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6tcv"]
+atlas = ExtResource("6_p078c")
+region = Rect2(0, 0, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3b11"]
+atlas = ExtResource("6_p078c")
+region = Rect2(16, 0, 16, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w1ifn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r378q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1isc8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4qpf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_egxh5")
+}],
+"loop": true,
+"name": &"left",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6tcv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3b11")
+}],
+"loop": true,
+"name": &"right",
+"speed": 12.0
+}]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_rgw77")
+metadata/_edit_vertical_guides_ = []
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("1_afyvs")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_filter = 1
+scale = Vector2(9, 10.125)
+texture = ExtResource("2_ee6xh")
+offset = Vector2(64, 32)
+
+[node name="UI" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="Info" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Life" type="TextureRect" parent="UI/Info"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("4_wff1v")
+script = ExtResource("5_t8y8b")
+
+[node name="LineEdit" type="LineEdit" parent="UI/Info/Life"]
+layout_mode = 0
+offset_left = -32.0
+offset_top = 4.0
+offset_right = 35.0625
+offset_bottom = 35.0
+text = "00x"
+editable = false
+
+[node name="Power" type="TextureRect" parent="UI/Info"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 16.0
+texture = SubResource("AtlasTexture_8sxpr")
+script = ExtResource("7_q7je4")
+
+[node name="powerFire" type="TextureProgressBar" parent="UI/Info/Power"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 12.0
+max_value = 10.0
+texture_under = SubResource("AtlasTexture_ua13p")
+texture_progress = SubResource("AtlasTexture_o6bf1")
+
+[node name="powerSpecial" type="TextureProgressBar" parent="UI/Info/Power"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 9.0
+offset_top = 12.0
+offset_right = 26.0
+offset_bottom = 16.0
+max_value = 10.0
+texture_under = SubResource("AtlasTexture_413b5")
+texture_progress = SubResource("AtlasTexture_kywws")
+
+[node name="ItemHold" type="TextureRect" parent="UI/Info"]
+layout_mode = 0
+offset_left = 32.0
+offset_right = 48.0
+offset_bottom = 16.0
+texture = ExtResource("8_li6px")
+stretch_mode = 3
+
+[node name="Score" type="ColorRect" parent="UI/Info"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_top = 8.0
+offset_right = 32.0
+offset_bottom = 24.0
+grow_horizontal = 2
+color = Color(1, 1, 1, 0.501961)
+script = ExtResource("9_62b4c")
+
+[node name="digit3" type="Sprite2D" parent="UI/Info/Score"]
+texture_filter = 1
+position = Vector2(8, 8)
+scale = Vector2(2, 2)
+texture = ExtResource("9_4hdv3")
+hframes = 5
+vframes = 2
+frame = 9
+
+[node name="digit2" type="Sprite2D" parent="UI/Info/Score"]
+texture_filter = 1
+position = Vector2(24, 8)
+scale = Vector2(2, 2)
+texture = ExtResource("9_4hdv3")
+hframes = 5
+vframes = 2
+frame = 9
+
+[node name="digit1" type="Sprite2D" parent="UI/Info/Score"]
+texture_filter = 1
+position = Vector2(40, 8)
+scale = Vector2(2, 2)
+texture = ExtResource("9_4hdv3")
+hframes = 5
+vframes = 2
+frame = 9
+
+[node name="digit0" type="Sprite2D" parent="UI/Info/Score"]
+texture_filter = 1
+position = Vector2(56, 8)
+scale = Vector2(2, 2)
+texture = ExtResource("9_4hdv3")
+hframes = 5
+vframes = 2
+frame = 9
+
+[node name="Game Over" type="Control" parent="UI"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Game Over"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -20.0
+offset_right = 36.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_supri")
+stretch_mode = 3
+
+[node name="player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("power_interface")]
+position = Vector2(32, 325)
+rotation = 1.5708
+up_direction = Vector2(-1, 0)
+floor_stop_on_slope = false
+floor_block_on_wall = false
+script = ExtResource("3_mmodo")
+power_interface = NodePath("../UI/Info/Power")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+shape = SubResource("CircleShape2D_tyvjy")
+
+[node name="ship" type="Sprite2D" parent="player"]
+texture_filter = 1
+texture = ExtResource("3_dq7fv")
+hframes = 3
+frame = 1
+
+[node name="Booster" type="AnimatedSprite2D" parent="player"]
+sprite_frames = SubResource("SpriteFrames_w1ifn")
+frame_progress = 0.629014
+offset = Vector2(0, 12)
+
+[node name="Timer" type="Timer" parent="player"]
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="lose_game" from="UI/Info/Life" to="." method="_on_life_lose_game"]
+[connection signal="recive_damage" from="player" to="UI/Info/Life" method="lose_life"]
+[connection signal="shot" from="player" to="UI/Info/Power" method="use_power"]
