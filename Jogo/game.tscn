@@ -111,11 +111,11 @@ metadata/_edit_vertical_guides_ = []
 script = ExtResource("1_afyvs")
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2(1152, 0)
+motion_mirroring = Vector2(960, 0)
 
 [node name="Background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 texture_filter = 1
-scale = Vector2(9, 10.125)
+scale = Vector2(7.5, 7.5)
 texture = ExtResource("2_ee6xh")
 offset = Vector2(64, 32)
 
