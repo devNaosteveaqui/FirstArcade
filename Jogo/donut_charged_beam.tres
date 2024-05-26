@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://cxthadgelx2wa"]
+
+[ext_resource type="Texture2D" uid="uid://c5x0a4jvhtsm5" path="res://Asset/Projectiles/Player_charged_donut_shot (16 x 16).png" id="1_24jfq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kg3b"]
+atlas = ExtResource("1_24jfq")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mk4d7"]
+atlas = ExtResource("1_24jfq")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nenrw"]
+atlas = ExtResource("1_24jfq")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kdtf"]
+atlas = ExtResource("1_24jfq")
+region = Rect2(48, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kg3b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mk4d7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nenrw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kdtf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

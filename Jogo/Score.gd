@@ -14,3 +14,6 @@ func set_digit(node:Sprite2D,value):
 		node.frame = 9
 	else:
 		node.frame = value-1
+
+func get_score():
+	return score

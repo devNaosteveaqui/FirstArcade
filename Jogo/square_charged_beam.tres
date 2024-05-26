@@ -1,0 +1,67 @@
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://cq8qubencp2n7"]
+
+[ext_resource type="Texture2D" uid="uid://c3xs6upsn82vv" path="res://Asset/Projectiles/Player_charged_square_shot (16 x 16).png" id="1_hjpcv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_didxr"]
+atlas = ExtResource("1_hjpcv")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jiro0"]
+atlas = ExtResource("1_hjpcv")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ngee"]
+atlas = ExtResource("1_hjpcv")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2lvg"]
+atlas = ExtResource("1_hjpcv")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wx84"]
+atlas = ExtResource("1_hjpcv")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxg25"]
+atlas = ExtResource("1_hjpcv")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4dnw"]
+atlas = ExtResource("1_hjpcv")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtigr"]
+atlas = ExtResource("1_hjpcv")
+region = Rect2(112, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_didxr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jiro0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ngee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2lvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wx84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxg25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4dnw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtigr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

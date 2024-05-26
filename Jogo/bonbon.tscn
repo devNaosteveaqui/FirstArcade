@@ -7,6 +7,7 @@
 size = Vector2(14, 8)
 
 [node name="bonbon" type="CharacterBody2D"]
+texture_filter = 1
 position = Vector2(48, 325)
 script = ExtResource("1_ayovl")
 
@@ -14,6 +15,7 @@ script = ExtResource("1_ayovl")
 shape = SubResource("RectangleShape2D_tlxam")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 sprite_frames = ExtResource("1_f3qpe")
 animation = &"die"
 

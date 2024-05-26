@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://0unlrtvj1x3d"]
+
+[ext_resource type="Script" path="res://power_item.gd" id="1_k6p75"]
+[ext_resource type="SpriteFrames" uid="uid://bp104vo84jsrr" path="res://power_item.tres" id="1_sh75s"]
+[ext_resource type="SpriteFrames" uid="uid://xks01i8puwua" path="res://sparkle.tres" id="2_blttp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eypjc"]
+radius = 5.0
+
+[node name="PowerItem" type="CharacterBody2D"]
+texture_filter = 1
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_k6p75")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_eypjc")
+
+[node name="Item" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_sh75s")
+frame_progress = 0.894539
+
+[node name="Sparkle" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_blttp")
+frame_progress = 0.0611529

@@ -10,6 +10,8 @@ func _ready():
 	add_to_group("Enemy")
 
 func _physics_process(delta):
+	if position.x < 0:
+		self.queue_free()
 	if alive:
 		self.velocity = speed
 		move_and_slide()
@@ -22,8 +24,15 @@ func _physics_process(delta):
 			alive = false
 			set_collision_layer_value(1,false)
 			$AnimatedSprite2D.play("die")
+			drop_powerup()
 			emit_signal("die")
 
+func drop_powerup():
+	var sort_spawn = randf()
+	if sort_spawn > 0.8:
+		var drop = load("res://power_item.tscn").instantiate()
+		drop.position = position
+		get_parent().add_child(drop)
 
 func _on_animated_sprite_2d_animation_looped():
 	if not alive:

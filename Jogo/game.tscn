@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b1f40g7myiv2h"]
+[gd_scene load_steps=33 format=3 uid="uid://b1f40g7myiv2h"]
 
 [ext_resource type="Script" path="res://ParallaxBackground.gd" id="1_afyvs"]
 [ext_resource type="Script" path="res://game.gd" id="1_rgw77"]
@@ -16,6 +16,9 @@
 [ext_resource type="Texture2D" uid="uid://cgpqa8c24xoch" path="res://Asset/UI objects/GAME_OVER (72 x 8).png" id="8_supri"]
 [ext_resource type="Texture2D" uid="uid://dkfnnamgug226" path="res://Asset/UI objects/Number_font (8 x 8).png" id="9_4hdv3"]
 [ext_resource type="Script" path="res://Score.gd" id="9_62b4c"]
+[ext_resource type="Script" path="res://ItemHold.gd" id="9_yy73v"]
+[ext_resource type="Texture2D" uid="uid://cv66aqvdlh5w7" path="res://Asset/Items/Circle_+_Square_+_Missile_pick-ups (16 x 16).png" id="10_m28q0"]
+[ext_resource type="Texture2D" uid="uid://bdacet8g3nkwb" path="res://Asset/UI objects/START (48 x 8).png" id="14_4ryp6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8sxpr"]
 atlas = ExtResource("4_jrgeu")
@@ -186,6 +189,14 @@ offset_right = 48.0
 offset_bottom = 16.0
 texture = ExtResource("8_li6px")
 stretch_mode = 3
+script = ExtResource("9_yy73v")
+
+[node name="item" type="Sprite2D" parent="UI/Info/ItemHold"]
+visible = false
+position = Vector2(8, 8)
+texture = ExtResource("10_m28q0")
+hframes = 3
+region_rect = Rect2(0, 0, 16, 16)
 
 [node name="Score" type="ColorRect" parent="UI/Info"]
 layout_mode = 1
@@ -236,9 +247,10 @@ hframes = 5
 vframes = 2
 frame = 9
 
-[node name="Game Over" type="Control" parent="UI"]
+[node name="End Game" type="Control" parent="UI"]
 process_mode = 3
 visible = false
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -246,7 +258,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="UI/Game Over"]
+[node name="Game Over" type="TextureButton" parent="UI/End Game"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -254,41 +266,77 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -36.0
-offset_top = -20.0
+offset_top = -4.0
 offset_right = 36.0
-offset_bottom = 20.0
+offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("8_supri")
+texture_normal = ExtResource("8_supri")
 stretch_mode = 3
 
-[node name="player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("power_interface")]
+[node name="Start Game" type="Control" parent="UI"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start" type="TextureButton" parent="UI/Start Game"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -4.0
+offset_right = 24.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("14_4ryp6")
+stretch_mode = 3
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Entitys" type="Node2D" parent="."]
+
+[node name="player" type="CharacterBody2D" parent="Entitys" node_paths=PackedStringArray("power_interface", "item_hold")]
+texture_filter = 1
 position = Vector2(32, 325)
 rotation = 1.5708
+collision_layer = 3
+collision_mask = 3
 up_direction = Vector2(-1, 0)
 floor_stop_on_slope = false
 floor_block_on_wall = false
 script = ExtResource("3_mmodo")
-power_interface = NodePath("../UI/Info/Power")
+power_interface = NodePath("../../UI/Info/Power")
+item_hold = NodePath("../../UI/Info/ItemHold")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entitys/player"]
 shape = SubResource("CircleShape2D_tyvjy")
 
-[node name="ship" type="Sprite2D" parent="player"]
+[node name="ship" type="Sprite2D" parent="Entitys/player"]
 texture_filter = 1
 texture = ExtResource("3_dq7fv")
 hframes = 3
 frame = 1
 
-[node name="Booster" type="AnimatedSprite2D" parent="player"]
+[node name="Booster" type="AnimatedSprite2D" parent="Entitys/player"]
 sprite_frames = SubResource("SpriteFrames_w1ifn")
 frame_progress = 0.629014
 offset = Vector2(0, 12)
 
-[node name="Timer" type="Timer" parent="player"]
+[node name="Timer" type="Timer" parent="Entitys/player"]
 
-[node name="Timer" type="Timer" parent="."]
+[node name="ShotSound" type="AudioStreamPlayer2D" parent="Entitys/player"]
 
 [connection signal="lose_game" from="UI/Info/Life" to="." method="_on_life_lose_game"]
-[connection signal="recive_damage" from="player" to="UI/Info/Life" method="lose_life"]
-[connection signal="shot" from="player" to="UI/Info/Power" method="use_power"]
+[connection signal="button_up" from="UI/End Game/Game Over" to="." method="_on_texture_button_button_up"]
+[connection signal="button_up" from="UI/Start Game/Start" to="." method="_on_texture_button_button_up"]
+[connection signal="recive_damage" from="Entitys/player" to="UI/Info/Life" method="lose_life"]
+[connection signal="shot" from="Entitys/player" to="UI/Info/Power" method="use_power"]

@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://bp104vo84jsrr"]
+
+[ext_resource type="Texture2D" uid="uid://dcdavt4kq84b" path="res://Asset/Items/Power_item (16 x 16).png" id="1_j07su"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rmtq"]
+atlas = ExtResource("1_j07su")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15hto"]
+atlas = ExtResource("1_j07su")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agf48"]
+atlas = ExtResource("1_j07su")
+region = Rect2(32, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rmtq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15hto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agf48")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

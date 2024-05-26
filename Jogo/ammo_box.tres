@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://ct647e5m4342h"]
+
+[ext_resource type="Texture2D" uid="uid://cv66aqvdlh5w7" path="res://Asset/Items/Circle_+_Square_+_Missile_pick-ups (16 x 16).png" id="1_hhx3i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1f2lb"]
+atlas = ExtResource("1_hhx3i")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsvtq"]
+atlas = ExtResource("1_hhx3i")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7f0n1"]
+atlas = ExtResource("1_hhx3i")
+region = Rect2(32, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1f2lb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsvtq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7f0n1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

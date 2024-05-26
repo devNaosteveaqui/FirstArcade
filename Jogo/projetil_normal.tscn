@@ -1,10 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://jmvw7xyxh7p7"]
+[gd_scene load_steps=11 format=3 uid="uid://jmvw7xyxh7p7"]
 
-[ext_resource type="Texture2D" uid="uid://bvg13fyuwa327" path="res://Asset/Projectiles/Player_beam (16 x 16).png" id="1_gd8f1"]
 [ext_resource type="Script" path="res://projetil_normal.gd" id="1_ixj4f"]
+[ext_resource type="SpriteFrames" uid="uid://r26w8ne1w2np" path="res://charged_beam.tres" id="3_kkhmw"]
+[ext_resource type="SpriteFrames" uid="uid://cxthadgelx2wa" path="res://donut_charged_beam.tres" id="4_h1vqe"]
+[ext_resource type="SpriteFrames" uid="uid://cq8qubencp2n7" path="res://square_charged_beam.tres" id="5_dfynv"]
+[ext_resource type="SpriteFrames" uid="uid://c87du7ijo5wih" path="res://donut_beam.tres" id="6_ve5ga"]
+[ext_resource type="SpriteFrames" uid="uid://j6kb3rehpibc" path="res://square_beam.tres" id="7_h5qfb"]
+[ext_resource type="SpriteFrames" uid="uid://6qsqft0m7sbi" path="res://missile.tres" id="8_5jx5l"]
+[ext_resource type="SpriteFrames" uid="uid://dlk5dfprvs8x1" path="res://normal_beam.tres" id="9_45iea"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_phlwx"]
 size = Vector2(10, 10)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dbu83"]
+radius = 100.0
 
 [node name="projetil_normal" type="CharacterBody2D"]
 script = ExtResource("1_ixj4f")
@@ -12,6 +21,35 @@ script = ExtResource("1_ixj4f")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_phlwx")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 1.5708
-texture = ExtResource("1_gd8f1")
+[node name="Normal" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("9_45iea")
+
+[node name="Charged" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = ExtResource("3_kkhmw")
+
+[node name="Donut Charged" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = ExtResource("4_h1vqe")
+
+[node name="Square Charged" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = ExtResource("5_dfynv")
+
+[node name="Donut" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = ExtResource("6_ve5ga")
+
+[node name="Square" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = ExtResource("7_h5qfb")
+
+[node name="Missel" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = ExtResource("8_5jx5l")
+animation = &"atras_esquerda"
+
+[node name="detect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect"]
+shape = SubResource("CircleShape2D_dbu83")

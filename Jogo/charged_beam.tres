@@ -1,0 +1,25 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://r26w8ne1w2np"]
+
+[ext_resource type="Texture2D" uid="uid://djegg3ixqsmdv" path="res://Asset/Projectiles/Player_charged_beam (16 x 16).png" id="1_2tx3e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lls4g"]
+atlas = ExtResource("1_2tx3e")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvx3j"]
+atlas = ExtResource("1_2tx3e")
+region = Rect2(16, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lls4g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvx3j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
