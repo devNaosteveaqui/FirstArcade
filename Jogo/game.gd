@@ -52,7 +52,10 @@ func _on_life_lose_game():
 func _on_texture_button_button_up():
 	if $"UI/Start Game".is_visible_in_tree():
 		$"UI/Start Game".hide()
+		$UI/StartGameClick.play()
 	if get_tree().paused:
 		get_tree().paused = false
 	if $"UI/End Game".is_visible_in_tree():
+		$UI/EndGameClick.play()
+		await $UI/EndGameClick.finished
 		get_tree().reload_current_scene()

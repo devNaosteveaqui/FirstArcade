@@ -25,6 +25,7 @@ func _physics_process(delta):
 			set_collision_layer_value(1,false)
 			$AnimatedSprite2D.play("die")
 			drop_powerup()
+			$Hitted.play()
 			emit_signal("die")
 
 func drop_powerup():

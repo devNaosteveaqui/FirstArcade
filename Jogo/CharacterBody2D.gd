@@ -68,10 +68,13 @@ func _physics_process(delta):
 func collision(collide):
 	if collide.is_in_group("Enemy"):
 		self.emit_signal("recive_damage")
+		$Hitted.play()
 	elif collide.is_in_group("PowerUP"):
 		power_interface.update_power_special()
 		has_special = true
+		$Getting.play()
 		#print(collide)
 	elif collide.is_in_group("RandomAmmo"):
 		next_shoot = collide.random_ammo()
 		item_hold.change_item(next_shoot)
+		$Getting.play()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b1f40g7myiv2h"]
+[gd_scene load_steps=36 format=3 uid="uid://b1f40g7myiv2h"]
 
 [ext_resource type="Script" path="res://ParallaxBackground.gd" id="1_afyvs"]
 [ext_resource type="Script" path="res://game.gd" id="1_rgw77"]
@@ -19,6 +19,9 @@
 [ext_resource type="Script" path="res://ItemHold.gd" id="9_yy73v"]
 [ext_resource type="Texture2D" uid="uid://cv66aqvdlh5w7" path="res://Asset/Items/Circle_+_Square_+_Missile_pick-ups (16 x 16).png" id="10_m28q0"]
 [ext_resource type="Texture2D" uid="uid://bdacet8g3nkwb" path="res://Asset/UI objects/START (48 x 8).png" id="14_4ryp6"]
+[ext_resource type="AudioStream" uid="uid://celrfsqehoh5x" path="res://Asset/Sounds/mixkit-short-laser-gun-shot-1670.wav" id="20_m53b5"]
+[ext_resource type="AudioStream" uid="uid://baw6c2lkbihla" path="res://Asset/Sounds/mixkit-electronic-retro-block-hit-2185.wav" id="21_25glr"]
+[ext_resource type="AudioStream" uid="uid://dcc1tno60n8o1" path="res://Asset/Sounds/mixkit-arcade-video-game-bonus-2044.wav" id="22_m5ow5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8sxpr"]
 atlas = ExtResource("4_jrgeu")
@@ -300,6 +303,12 @@ grow_vertical = 2
 texture_normal = ExtResource("14_4ryp6")
 stretch_mode = 3
 
+[node name="StartGameClick" type="AudioStreamPlayer2D" parent="UI"]
+stream = ExtResource("20_m53b5")
+
+[node name="EndGameClick" type="AudioStreamPlayer2D" parent="UI"]
+stream = ExtResource("21_25glr")
+
 [node name="Timer" type="Timer" parent="."]
 
 [node name="Entitys" type="Node2D" parent="."]
@@ -334,6 +343,13 @@ offset = Vector2(0, 12)
 [node name="Timer" type="Timer" parent="Entitys/player"]
 
 [node name="ShotSound" type="AudioStreamPlayer2D" parent="Entitys/player"]
+stream = ExtResource("20_m53b5")
+
+[node name="Hitted" type="AudioStreamPlayer2D" parent="Entitys/player"]
+stream = ExtResource("21_25glr")
+
+[node name="Getting" type="AudioStreamPlayer2D" parent="Entitys/player"]
+stream = ExtResource("22_m5ow5")
 
 [connection signal="lose_game" from="UI/Info/Life" to="." method="_on_life_lose_game"]
 [connection signal="button_up" from="UI/End Game/Game Over" to="." method="_on_texture_button_button_up"]
