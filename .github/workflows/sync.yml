@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: SamuelScript/FirstArcade
-          token: ${{secrets.PUBLIC_REPO_TOKEN}}
+          token: ${{secrets.SYNC_REPO}}
 
       - name: Add public repository
         run: |
