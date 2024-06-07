@@ -19,7 +19,7 @@ jobs:
 
       - name: Add public repository
         run: |
-          git remote add public https://github.com/devNaosteveaqui/FirstArcade-
+          git remote add public https://github.com/devNaosteveaqui/FirstArcade
           git fetch public
 
       - name: Push to public
