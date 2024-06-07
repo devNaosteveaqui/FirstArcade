@@ -1,0 +1,27 @@
+name: Sincronizar com repositorio publico
+
+on:
+  push:
+    branches: [ "main" ]
+  
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          repository: SamuelScript/FirstArcade
+          token: ${{secrets.SYNC_REPO}}
+
+      - name: Add public repository
+        run: |
+          git remote add public https://github.com/devNaosteveaqui/FirstArcade.git
+          git fetch public
+
+      - name: Push to public
+        run: |
+          git push public main
