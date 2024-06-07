@@ -12,7 +12,7 @@ jobs:
     
     steps:
       - name: Checkout Rpeository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: SamuelScript/FirstArcade
           token: ${{secrets.GITHUB_TOKEN}}
