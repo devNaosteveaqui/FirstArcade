@@ -20,7 +20,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Add public repository
         run: |
-          git remote add public https://github.com/devNaosteveaqui/FirstArcade
+          git remote add public https://github.com/devNaosteveaqui/FirstArcade.git
           git fetch public
 
       # Runs a set of commands using the runners shell
