@@ -3,8 +3,12 @@ extends Node2D
 enum SPAWN{ALAN,BONBON,LIPS}
 
 var right_pos
-var spawn_delay = 1
-var box_count = 0
+var spawn_delay : int = 1
+var box_count : int = 0
+
+var game_stage : int = 0
+var range_spawn : int = 1
+var enemy_vel : float = 1.0
 
 func _ready():
 	right_pos = get_viewport_rect().size.x
@@ -15,12 +19,13 @@ func _ready():
 	$Entitys/player.position.x = 32
 	$Entitys/player.position.y = get_viewport_rect().size.y/2
 
-func spawn(resource):
+func spawn(resource,enemy_vel = self.enemy_vel):
 	var enemy = load(resource).instantiate()
 	enemy.position.x = right_pos
 	enemy.position.y = sort_next_position()
 	if enemy.has_signal("die"):
 		enemy.connect("die",$UI/Info/Score.add_score)
+	enemy.speed_factor = enemy_vel
 	$Entitys.add_child(enemy)
 
 func sort_spawn():
@@ -30,7 +35,7 @@ func sort_spawn():
 		box_count = int(score/50)
 		spawn("res://box.tscn")
 	else:
-		var sorted = randi()%SPAWN.size()
+		var sorted = randi()%range_spawn#SPAWN.size()
 		match sorted:
 			SPAWN.ALAN:
 				spawn("res://alan.tscn")
@@ -59,3 +64,18 @@ func _on_texture_button_button_up():
 		$UI/EndGameClick.play()
 		await $UI/EndGameClick.finished
 		get_tree().reload_current_scene()
+
+func update_stage():
+	game_stage += 1
+	
+	if game_stage == 10:
+		range_spawn += 1
+	elif game_stage == 30:
+		range_spawn += 1
+	
+	if game_stage == 5:
+		enemy_vel += 0.5
+	elif game_stage == 20:
+		enemy_vel += 0.5
+	elif game_stage == 40:
+		enemy_vel += 0.5

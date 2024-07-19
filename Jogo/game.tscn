@@ -352,6 +352,7 @@ stream = ExtResource("21_25glr")
 stream = ExtResource("22_m5ow5")
 
 [connection signal="lose_game" from="UI/Info/Life" to="." method="_on_life_lose_game"]
+[connection signal="reach_stage" from="UI/Info/Score" to="." method="update_stage"]
 [connection signal="button_up" from="UI/End Game/Game Over" to="." method="_on_texture_button_button_up"]
 [connection signal="button_up" from="UI/Start Game/Start" to="." method="_on_texture_button_button_up"]
 [connection signal="recive_damage" from="Entitys/player" to="UI/Info/Life" method="lose_life"]

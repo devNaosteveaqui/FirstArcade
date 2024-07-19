@@ -3,6 +3,7 @@ extends CharacterBody2D
 signal die
 
 var speed : Vector2 = Vector2(-100,0)
+var speed_factor : float = 1.0
 var alive : bool = true
 
 func _ready():
@@ -13,7 +14,7 @@ func _physics_process(delta):
 	if position.x < 0:
 		self.queue_free()
 	if alive:
-		self.velocity = speed
+		self.velocity = speed*speed_factor
 		move_and_slide()
 		var collide = get_last_slide_collision()
 		if collide:
