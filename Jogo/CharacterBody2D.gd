@@ -53,7 +53,7 @@ func _physics_process(delta):
 			$ShotSound.play()
 			get_parent().add_child(projetil)
 			power_interface.use_power()
-			
+	
 	
 	var collide = move_and_collide(velocity*delta)
 	
